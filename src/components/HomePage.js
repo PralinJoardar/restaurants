@@ -9,7 +9,7 @@ function HomePage() {
   const cuisineList = useSelector((state) => state.cuisineList);
 
   console.log("cuisineList", cuisineList);
-
+sadsadsadasd
   return (
     <>
       <div style={{ margin: "auto", width: "50%" }}>
