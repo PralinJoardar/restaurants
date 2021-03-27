@@ -10,8 +10,6 @@ function HomePage() {
 
   console.log("cuisineList", cuisineList);
 
-  
-
   return (
     <>
       <div style={{ margin: "auto", width: "50%" }}>
@@ -28,7 +26,15 @@ function HomePage() {
         <input type="checkbox" />
         French &nbsp;&nbsp;&nbsp;&nbsp;
       </div>
-      
+      {cuisineList.map((cuisine, cuisineIndex) => (
+        <div key={cuisineIndex}>
+          {cuisine.restaurants.map((restaurant, restaurantIndex) => (
+            <div key={restaurantIndex}>
+              <p>{restaurant.name}</p>
+            </div>
+          ))}
+        </div>
+      ))}
     </>
   );
 }
