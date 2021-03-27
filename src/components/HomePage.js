@@ -16,20 +16,16 @@ function HomePage() {
 
   return (
     <>
-      <div style={{ margin: "auto", width: "50%" }}>
-        <input type="checkbox" />
-        Chinese &nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" />
-        Indian &nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" />
-        Thai &nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" />
-        Greek &nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" />
-        Vietnamese &nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="checkbox" />
-        French &nbsp;&nbsp;&nbsp;&nbsp;
-      </div>
+      {cuisineList.map((cuisine, cuisineIndex) => (
+        <div key={cuisineIndex} style={{ display: "inline-flex" }}>
+          <input type="checkbox" />
+          {cuisine.name}
+          &nbsp; &nbsp; &nbsp;
+        </div>
+      ))}
+      <br />
+      <br />
+      <br />
       {restaurantList.map((data, index) => (
         <div key={index}>
           <p>{data.name}</p>
