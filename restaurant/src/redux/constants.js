@@ -1,0 +1,1 @@
+export const FETCH_CUISINE_LIST = "FETCH_CUISINE_LIST";
