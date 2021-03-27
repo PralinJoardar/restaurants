@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { cuisineListAction } from "../redux/actions/cuisineListAction";
 import { restaurantListAction } from "../redux/actions/restaurantListAction";
 function HomePage() {
+  const [filteredRestaurants, setFilteredRestaurants] = useState([])
+  console.log("filteredRestaurants",filteredRestaurants);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(cuisineListAction());
@@ -14,11 +16,19 @@ function HomePage() {
   console.log("cuisineList", cuisineList);
   console.log("restaurantList", restaurantList);
 
+  const handleCheckbox=(cuisine)=>{
+    cuisine.restaurants.map((restaurant,restaurantIndex)=>(
+      <div key={restaurantIndex}>
+        {setFilteredRestaurants([...filteredRestaurants,restaurant.name])}
+        {console.log("restaurant names",restaurant.name)}
+      </div>
+    ))
+  }
   return (
     <>
       {cuisineList.map((cuisine, cuisineIndex) => (
         <div key={cuisineIndex} style={{ display: "inline-flex" }}>
-          <input type="checkbox" />
+          <input type="checkbox" onClick={()=>handleCheckbox(cuisine)}/>
           {cuisine.name}
           &nbsp; &nbsp; &nbsp;
         </div>
