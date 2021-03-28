@@ -6,10 +6,8 @@ import { restaurantListAction } from "../redux/actions/restaurantListAction";
 function HomePage() {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const restaurants = [];
-  let displayList = [];
-  let filteredDisplayList = displayList;
-  console.log("filteredDisplayList",filteredDisplayList);
-  console.log("displayList", displayList);
+  let filteredDisplayList = [];
+  console.log("filteredDisplayList", filteredDisplayList);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(cuisineListAction());
@@ -28,7 +26,9 @@ function HomePage() {
   restaurantList.map((data, index) =>
     restaurants.filter((value) => {
       if (value == data.name) {
-        displayList.push(value);
+        restaurants.forEach((ele) => {
+          if (!filteredDisplayList.includes(ele)) filteredDisplayList.push(ele);
+        });
       }
     })
   );
