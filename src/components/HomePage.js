@@ -6,7 +6,10 @@ import { restaurantListAction } from "../redux/actions/restaurantListAction";
 function HomePage() {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const restaurants = [];
-  console.log("filteredRestaurants", filteredRestaurants);
+  let displayList = [];
+  let filteredDisplayList = displayList;
+  console.log("filteredDisplayList",filteredDisplayList);
+  console.log("displayList", displayList);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(cuisineListAction());
@@ -18,7 +21,18 @@ function HomePage() {
   const handleCheckbox = (restaurants) => {
     setFilteredRestaurants([...filteredRestaurants, restaurants]);
   };
- 
+  filteredRestaurants.map((values) =>
+    values.map((value) => restaurants.push(value.name))
+  );
+
+  restaurantList.map((data, index) =>
+    restaurants.filter((value) => {
+      if (value == data.name) {
+        displayList.push(value);
+      }
+    })
+  );
+
   return (
     <>
       {cuisineList.map((cuisine, cuisineIndex) => (
@@ -34,11 +48,17 @@ function HomePage() {
       <br />
       <br />
       <br />
-      {restaurantList.map((data, index) => (
-        <div key={index}>
-          <p>{data.name}</p>
-        </div>
-      ))}
+      {filteredDisplayList == ""
+        ? restaurantList.map((value, index) => (
+            <div key={index}>
+              <p>{value.name}</p>
+            </div>
+          ))
+        : filteredDisplayList.map((data, index) => (
+            <div key={index}>
+              <p>{data}</p>
+            </div>
+          ))}
     </>
   );
 }
