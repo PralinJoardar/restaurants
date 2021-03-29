@@ -19,7 +19,6 @@ function HomePage() {
   const handleCheckbox = (restaurants) => {
     setFilteredRestaurants([...filteredRestaurants, restaurants]);
   };
-  const handleOnChange = (e) => {};
   filteredRestaurants.map((values) =>
     values.map((value) => restaurants.push(value.name))
   );
@@ -42,7 +41,6 @@ function HomePage() {
             type="checkbox"
             name={cuisine.name}
             onClick={() => handleCheckbox(cuisine.restaurants)}
-            onChange={() => handleOnChange()}
           />
           {cuisine.name}
           &nbsp; &nbsp; &nbsp;
