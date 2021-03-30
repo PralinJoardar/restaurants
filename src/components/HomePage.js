@@ -6,7 +6,8 @@ import { restaurantListAction } from "../redux/actions/restaurantListAction";
 function HomePage() {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const restaurants = [];
-  console.log("filteredRestaurants", filteredRestaurants);
+  let filteredDisplayList = [];
+  console.log("filteredDisplayList", filteredDisplayList);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(cuisineListAction());
@@ -18,13 +19,27 @@ function HomePage() {
   const handleCheckbox = (restaurants) => {
     setFilteredRestaurants([...filteredRestaurants, restaurants]);
   };
- 
+  filteredRestaurants.map((values) =>
+    values.map((value) => restaurants.push(value.name))
+  );
+
+  restaurantList.map((data, index) =>
+    restaurants.filter((value) => {
+      if (value == data.name) {
+        restaurants.forEach((ele) => {
+          if (!filteredDisplayList.includes(ele)) filteredDisplayList.push(ele);
+        });
+      }
+    })
+  );
+
   return (
     <>
       {cuisineList.map((cuisine, cuisineIndex) => (
         <div key={cuisineIndex} style={{ display: "inline-flex" }}>
           <input
             type="checkbox"
+            name={cuisine.name}
             onClick={() => handleCheckbox(cuisine.restaurants)}
           />
           {cuisine.name}
@@ -34,11 +49,17 @@ function HomePage() {
       <br />
       <br />
       <br />
-      {restaurantList.map((data, index) => (
-        <div key={index}>
-          <p>{data.name}</p>
-        </div>
-      ))}
+      {filteredDisplayList == ""
+        ? restaurantList.map((value, index) => (
+            <div key={index}>
+              <p>{value.name}</p>
+            </div>
+          ))
+        : filteredDisplayList.map((data, index) => (
+            <div key={index}>
+              <p>{data}</p>
+            </div>
+          ))}
     </>
   );
 }
