@@ -16,8 +16,11 @@ function HomePage() {
   const cuisineList = useSelector((state) => state.cuisineList);
   const restaurantList = useSelector((state) => state.restaurantList);
 
-  const handleCheckbox = (restaurants) => {
-    setFilteredRestaurants([...filteredRestaurants, restaurants]);
+  const handleCheckbox = (e, restaurants) => {
+    let { name, checked } = e.target;
+    checked
+      ? setFilteredRestaurants([...filteredRestaurants, restaurants])
+      : setFilteredRestaurants([filteredRestaurants]);
   };
   filteredRestaurants.map((values) =>
     values.map((value) => restaurants.push(value.name))
@@ -40,7 +43,7 @@ function HomePage() {
           <input
             type="checkbox"
             name={cuisine.name}
-            onClick={() => handleCheckbox(cuisine.restaurants)}
+            onClick={(e) => handleCheckbox(e, cuisine.restaurants)}
           />
           {cuisine.name}
           &nbsp; &nbsp; &nbsp;
