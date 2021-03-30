@@ -4,10 +4,12 @@ import { cuisineListAction } from "../redux/actions/cuisineListAction";
 import { restaurantListAction } from "../redux/actions/restaurantListAction";
 
 function HomePage() {
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [restraurantArray, setRestraurantArray] = useState([]);
   const restaurants = [];
-  let filteredDisplayList = [];
-  console.log("filteredDisplayList", filteredDisplayList);
+  let filteredRestaurants = [];
+  console.log("restraurantArray", restraurantArray);
+  console.log("restraurants", restaurants);
+  console.log("filteredRestaurants", filteredRestaurants);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(cuisineListAction());
@@ -15,14 +17,17 @@ function HomePage() {
   }, []);
   const cuisineList = useSelector((state) => state.cuisineList);
   const restaurantList = useSelector((state) => state.restaurantList);
-
-  const handleCheckbox = (e, restaurants) => {
+  const handleCheckbox = (e, selectedRestaurants) => {
     let { name, checked } = e.target;
+    console.log("checked", checked);
     checked
-      ? setFilteredRestaurants([...filteredRestaurants, restaurants])
-      : setFilteredRestaurants([filteredRestaurants]);
+      ? setRestraurantArray([...restraurantArray, selectedRestaurants])
+      : setRestraurantArray(
+          [...restraurantArray],
+          selectedRestaurants.splice(0, selectedRestaurants.length)
+        );
   };
-  filteredRestaurants.map((values) =>
+  restraurantArray.map((values) =>
     values.map((value) => restaurants.push(value.name))
   );
 
@@ -30,7 +35,7 @@ function HomePage() {
     restaurants.filter((value) => {
       if (value == data.name) {
         restaurants.forEach((ele) => {
-          if (!filteredDisplayList.includes(ele)) filteredDisplayList.push(ele);
+          if (!filteredRestaurants.includes(ele)) filteredRestaurants.push(ele);
         });
       }
     })
@@ -52,13 +57,13 @@ function HomePage() {
       <br />
       <br />
       <br />
-      {filteredDisplayList == ""
+      {filteredRestaurants == ""
         ? restaurantList.map((value, index) => (
             <div key={index}>
               <p>{value.name}</p>
             </div>
           ))
-        : filteredDisplayList.map((data, index) => (
+        : filteredRestaurants.map((data, index) => (
             <div key={index}>
               <p>{data}</p>
             </div>
