@@ -4,8 +4,11 @@ import { cuisineListAction } from "../redux/actions/cuisineListAction";
 import { restaurantListAction } from "../redux/actions/restaurantListAction";
 
 function HomePage() {
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [restraurantArray, setRestraurantArray] = useState([]);
   const restaurants = [];
+  let filteredRestaurants = [];
+  console.log("restraurantArray", restraurantArray);
+  console.log("restraurants", restaurants);
   console.log("filteredRestaurants", filteredRestaurants);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -14,18 +17,38 @@ function HomePage() {
   }, []);
   const cuisineList = useSelector((state) => state.cuisineList);
   const restaurantList = useSelector((state) => state.restaurantList);
-
-  const handleCheckbox = (restaurants) => {
-    setFilteredRestaurants([...filteredRestaurants, restaurants]);
+  const handleCheckbox = (e, selectedRestaurants) => {
+    let { name, checked } = e.target;
+    console.log("checked", checked);
+    checked
+      ? setRestraurantArray([...restraurantArray, selectedRestaurants])
+      : setRestraurantArray(
+          [...restraurantArray],
+          selectedRestaurants.splice(0, selectedRestaurants.length)
+        );
   };
- 
+  restraurantArray.map((values) =>
+    values.map((value) => restaurants.push(value.name))
+  );
+
+  restaurantList.map((data, index) =>
+    restaurants.filter((value) => {
+      if (value == data.name) {
+        restaurants.forEach((ele) => {
+          if (!filteredRestaurants.includes(ele)) filteredRestaurants.push(ele);
+        });
+      }
+    })
+  );
+
   return (
     <>
       {cuisineList.map((cuisine, cuisineIndex) => (
         <div key={cuisineIndex} style={{ display: "inline-flex" }}>
           <input
             type="checkbox"
-            onClick={() => handleCheckbox(cuisine.restaurants)}
+            name={cuisine.name}
+            onClick={(e) => handleCheckbox(e, cuisine.restaurants)}
           />
           {cuisine.name}
           &nbsp; &nbsp; &nbsp;
@@ -34,11 +57,17 @@ function HomePage() {
       <br />
       <br />
       <br />
-      {restaurantList.map((data, index) => (
-        <div key={index}>
-          <p>{data.name}</p>
-        </div>
-      ))}
+      {filteredRestaurants == ""
+        ? restaurantList.map((value, index) => (
+            <div key={index}>
+              <p>{value.name}</p>
+            </div>
+          ))
+        : filteredRestaurants.map((data, index) => (
+            <div key={index}>
+              <p>{data}</p>
+            </div>
+          ))}
     </>
   );
 }
