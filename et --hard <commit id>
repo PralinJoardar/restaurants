@@ -1,0 +1,28 @@
+[33mbbbc41b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{89 seconds ago}: pull --tags origin master: Fast-forward
+[33mae2b715[m HEAD@{2 minutes ago}: checkout: moving from office to master
+[33mad1e51f[m[33m ([m[1;31morigin/office[m[33m, [m[1;32moffice[m[33m)[m HEAD@{6 minutes ago}: checkout: moving from master to office
+[33mae2b715[m HEAD@{6 minutes ago}: checkout: moving from office to master
+[33mad1e51f[m[33m ([m[1;31morigin/office[m[33m, [m[1;32moffice[m[33m)[m HEAD@{6 minutes ago}: commit (merge): Merge branch 'office' of https://github.com/PralinJoardar/restaurants into office
+[33md80d450[m HEAD@{7 minutes ago}: checkout: moving from master to office
+[33mae2b715[m HEAD@{8 minutes ago}: pull --tags origin master: Fast-forward
+[33mba97ef5[m HEAD@{4 days ago}: commit: final office commit
+[33m8976ae5[m HEAD@{4 days ago}: commit: office commit2
+[33maac008d[m HEAD@{4 days ago}: commit: office commit
+[33mba0e289[m HEAD@{4 days ago}: checkout: moving from master to master
+[33mba0e289[m HEAD@{4 days ago}: checkout: moving from master to master
+[33mba0e289[m HEAD@{4 days ago}: checkout: moving from office to master
+[33md80d450[m HEAD@{4 days ago}: checkout: moving from master to office
+[33mba0e289[m HEAD@{4 days ago}: checkout: moving from d80d450a53c415d11d6b3f3cc39c4ea356580847 to master
+[33md80d450[m HEAD@{4 days ago}: checkout: moving from office to office
+[33md80d450[m HEAD@{4 days ago}: commit: dwdqweeqwe
+[33m1e6429e[m HEAD@{4 days ago}: checkout: moving from master to office
+[33mba0e289[m HEAD@{4 days ago}: checkout: moving from office to master
+[33m1e6429e[m HEAD@{4 days ago}: checkout: moving from master to office
+[33mba0e289[m HEAD@{4 days ago}: checkout: moving from office to master
+[33m1e6429e[m HEAD@{4 days ago}: checkout: moving from master to office
+[33mba0e289[m HEAD@{4 days ago}: checkout: moving from office to master
+[33m1e6429e[m HEAD@{4 days ago}: checkout: moving from master to office
+[33mba0e289[m HEAD@{4 days ago}: commit: main commit
+[33mdeedd7f[m HEAD@{4 days ago}: checkout: moving from office to master
+[33m1e6429e[m HEAD@{4 days ago}: reset: moving to HEAD
+[33m1e6429e[m HEAD@{4 days ago}: commit: office commit
